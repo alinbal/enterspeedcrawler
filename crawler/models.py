@@ -4,11 +4,10 @@ from django.db import models
 from django.utils import timezone
 
 
-# Create your models here.
-
 class ScrapyItem(models.Model):
     unique_id = models.CharField(max_length=100, null=True)
     data = models.TextField()  # this stands for our crawled data
+    url = models.CharField(max_length=500,default='')
     date = models.DateTimeField(default=timezone.now)
 
     # This is for basic and custom serialisation to return it to client as a JSON.
