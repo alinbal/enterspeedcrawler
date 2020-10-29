@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'w-_zo8!5mu=4sbw%73$z6$1qx@pi$#&%1!-w2i$)7su5c7gkd7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['enterspeedcralwer.herokuapp.com']
 
