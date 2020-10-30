@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from uuid import uuid4
 from urllib.parse import urlparse
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 from django.views.decorators.http import require_POST, require_http_methods
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -33,8 +34,16 @@ def index(request):
 
 
 def search(request):
-    hit_count = ScrapyItem.objects.filter(data__contains='before')
-    return render(request, 'index.html', {'search_hits': hit_count})
+    search_hits = 0
+    search_target = ''
+    if request.method == 'POST':
+        search_target = request.POST.get('search', None)  # take url comes from client. (From an input may be?)
+        found_items = ScrapyItem.objects.filter(data__contains=search_target)
+        search_hits = 0
+        for found_item in found_items:
+            search_hits += found_item.data.count(search_target)
+
+    return render(request, 'search_results.html', context={'search_hits': search_hits, 'search_target': search_target})
 
 
 @csrf_exempt

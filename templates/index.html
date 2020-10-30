@@ -8,10 +8,24 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Add additional CSS in static file -->
     {% load static %}
+    <style>
+        .table td.text {
+            max-width: 177px;
+        }
+
+        span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
     <form method="POST" action="{% url 'crawl' %}">
+        {% csrf_token %}
         <label>
             <input name="url" type="text" placeholder="URL" value="{{ request.GET.q }}">
         </label>
@@ -19,12 +33,14 @@
     </form>
 
     <form method="POST" action="{% url 'search' %}">
+        {% csrf_token %}
         <label>
-            <input name="search" type="text" placeholder="URL" value="{{ request.GET.q }}">
+            <input name="search" type="text" placeholder="...." value="{{ request.GET.q }}">
         </label>
         <input type="submit" value="Search">
     </form>
 
+    <h1>Crawled URLs</h1>
     <table class="table table-striped">
         <thead>
         <tr>
