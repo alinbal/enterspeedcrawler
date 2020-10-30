@@ -27,6 +27,16 @@ def is_valid_url(url):
     return True
 
 
+def index(request):
+    context = {'crawl_items': ScrapyItem.objects.all()}
+    return render(request, 'index.html', context=context)
+
+
+def search(request):
+    hit_count = ScrapyItem.objects.filter(data__contains='before')
+    return render(request, 'index.html', {'search_hits': hit_count})
+
+
 @csrf_exempt
 @require_http_methods(['POST', 'GET'])  # only get and post
 def crawl(request):

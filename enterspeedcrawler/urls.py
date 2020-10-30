@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 from crawler import views
 
 urlpatterns = [
-                  path('', admin.site.urls),
+                  path('', views.index, name='index'),
                   path('admin/', admin.site.urls),
                   url(r'^api/crawl/', views.crawl, name='crawl'),
+                  url(r'^api/search/', views.search, name='search'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
