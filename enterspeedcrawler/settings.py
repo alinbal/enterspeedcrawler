@@ -24,7 +24,7 @@ SECRET_KEY = 'w-_zo8!5mu=4sbw%73$z6$1qx@pi$#&%1!-w2i$)7su5c7gkd7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['enterspeedcralwer.herokuapp.com', '127.0.0.1','localhost']
+ALLOWED_HOSTS = ['enterspeedcralwer.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -74,8 +74,12 @@ WSGI_APPLICATION = 'enterspeedcrawler.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7ot7usgjtiff',
+        'HOST': 'ec2-52-208-175-161.eu-west-1.compute.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'lvgkiwqzsxeaiv',
+        'PASSWORD': 'e8b6b685212aa0753209108b8bba00a9f71eb38826bbf3c471280dc6db385541'
     }
 }
 
